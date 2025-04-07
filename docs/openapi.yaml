@@ -1,0 +1,246 @@
+openapi: 3.0.0
+info:
+  title: Device API
+  description: API for managing device properties.
+  version: 1.0.0
+
+servers:
+  - url: http://<server-ip>
+    description: The server IP where the API is hosted.
+
+paths:
+  /properties/report:
+    get:
+      summary: Get device properties report
+      operationId: getPropertiesReport
+      responses:
+        '200':
+          description: A list of properties for the device.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  timestamp:
+                    type: integer
+                    description: Timestamp of the report.
+                  messageId:
+                    type: integer
+                    description: Message identifier.
+                  sn:
+                    type: string
+                    description: Serial number of the device.
+                  version:
+                    type: integer
+                    description: Version of the report.
+                  product:
+                    type: string
+                    description: Product name.
+                  properties:
+                    type: object
+                    properties:
+                      heatState:
+                        type: integer
+                        description: '0: Not heating, 1: Heating.'
+                      packInputPower:
+                        type: integer
+                        description: Battery pack input power (discharging).
+                      outputPackPower:
+                        type: integer
+                        description: Output power to battery pack (charging).
+                      outputHomePower:
+                        type: integer
+                        description: Output power to home electricity.
+                      remainOutTime:
+                        type: integer
+                        description: Remaining output time.
+                      packState:
+                        type: integer
+                        description: '0: Standby, 1: Charging, 2: Discharging.'
+                      electricLevel:
+                        type: integer
+                        description: Battery charge level.
+                      gridInputPower:
+                        type: integer
+                        description: Grid input power.
+                      solarInputPower:
+                        type: integer
+                        description: Solar input power.
+                      solarPower1:
+                        type: integer
+                        description: Solar power input from MPPT1.
+                      solarPower2:
+                        type: integer
+                        description: Solar power input from MPPT2.
+                      pass:
+                        type: integer
+                        description: Pass-through state.
+                      reverseState:
+                        type: integer
+                        description: Reverse state.
+                      socStatus:
+                        type: integer
+                        description: State of charge status.
+                      hyperTmp:
+                        type: integer
+                        description: Hyper temperature status.
+                      dcStatus:
+                        type: integer
+                        description: DC status.
+                      pvStatus:
+                        type: integer
+                        description: PV status.
+                      acStatus:
+                        type: integer
+                        description: AC status.
+                      dataReady:
+                        type: integer
+                        description: Data readiness flag.
+                      gridState:
+                        type: integer
+                        description: Grid state.
+                      BatVolt:
+                        type: integer
+                        description: Battery voltage.
+                      socLimit:
+                        type: integer
+                        description: SOC limit.
+                      writeRsp:
+                        type: integer
+                        description: Write response status.
+                      acMode:
+                        type: integer
+                        description: AC mode value for the device.
+                      inputLimit:
+                        type: integer
+                        description: Input power limit.
+                      outputLimit:
+                        type: integer
+                        description: Output power limit.
+                      socSet:
+                        type: integer
+                        description: SOC set point.
+                      minSoc:
+                        type: integer
+                        description: Minimum SOC.
+                      gridStandard:
+                        type: integer
+                        description: Grid standard.
+                      gridReverse:
+                        type: integer
+                        description: Grid reverse setting.
+                      inverseMaxPower:
+                        type: integer
+                        description: Inverter maximum power.
+                      lampSwitch:
+                        type: integer
+                        description: Lamp switch state.
+                      IOTState:
+                        type: integer
+                        description: IoT state.
+                      factoryModeState:
+                        type: integer
+                        description: Factory mode state.
+                      OTAState:
+                        type: integer
+                        description: OTA update state.
+                      LCNState:
+                        type: integer
+                        description: LCN state.
+                      oldMode:
+                        type: integer
+                        description: Previous mode.
+                      VoltWakeup:
+                        type: integer
+                        description: Voltage wakeup setting.
+                      ts:
+                        type: integer
+                        description: Timestamp.
+                      bindstate:
+                        type: integer
+                        description: Bind state.
+                      tsZone:
+                        type: integer
+                        description: Time zone offset.
+                      chargeMaxLimit:
+                        type: integer
+                        description: Maximum charge limit.
+                      smartMode:
+                        type: integer
+                        description: Smart mode setting.
+                      rssi:
+                        type: integer
+                        description: RSSI signal strength.
+                      is_error:
+                        type: integer
+                        description: Error flag.
+                  packData:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        sn:
+                          type: string
+                          description: Serial number of the battery pack.
+                        packType:
+                          type: integer
+                          description: Not used.
+                        socLevel:
+                          type: integer
+                          description: Battery charge level.
+                        state:
+                          type: integer
+                          description: '0: Standby, 1: Charging, 2: Discharging.'
+                        power:
+                          type: integer
+                          description: Battery pack power.
+                        maxTemp:
+                          type: integer
+                          description: Maximum battery temperature in tenths of Kelvin.
+                        totalVol:
+                          type: integer
+                          description: Total voltage.
+                        batcur:
+                          type: integer
+                          description: Total current.
+                        maxVol:
+                          type: integer
+                          description: Maximum cell voltage in hundredths of a volt.
+                        minVol:
+                          type: integer
+                          description: Minimum cell voltage in hundredths of a volt.
+                        softVersion:
+                          type: integer
+                          description: Software version.
+                        heatState:
+                          type: integer
+                          description: '0: Not heating, 1: Heating.'
+
+  /properties/write:
+    post:
+      summary: Write device properties
+      operationId: writeProperties
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                sn:
+                  type: string
+                  description: Serial number of the device.
+                properties:
+                  type: object
+                  description: The [properties](https://github.com/dav1dBoy/zenSDK/blob/main/docs/en_properties.md) to be written to the device.
+                  properties:
+                    acMode:
+                      type: integer
+                      description: AC mode value for the device.
+      responses:
+        '200':
+          description: Property successfully written to the device.
+        '400':
+          description: Bad request, invalid parameters or request format.
+        '401':
+          description: Unauthorized, authentication failed.
