@@ -38,7 +38,7 @@ This document currently supports the following products:
 
 | Product Name  | Firmware Version | Notes |
 | ------------- | ---------------- | ----- |
-| SolarFlow 800 | 1.1.7            |       |
+| SolarFlow 800 | 1.0.2            |       |
 | To be updated |                  |       |
 
 # **🚀 Key Features**
