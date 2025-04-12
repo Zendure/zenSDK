@@ -36,9 +36,11 @@ If you have **innovative ideas** for **Zendure** products, feel free to contact 
 
 This document currently supports the following products:
 
-| Product Name  | Firmware Version | Notes |
-| ------------- | ---------------- | ----- |
-| SolarFlow 800 | 1.0.2            |       |
+| Product Name      | Firmware Version | Notes |
+| ----------------- | ---------------- | ----- |
+| SolarFlow 800     | 1.0.2            |       |
+| SolarFlow 2400 AC | TBD              |       |
+| SolarFlow 800 Pro | TBD              |       |
 | To be updated |                  |       |
 
 # **🚀 Key Features**
@@ -87,19 +89,26 @@ POST /properties/write      # Send control commands, such as switching the devic
     }
 }
 ```
+
 ## **Windows/MacOS/Linux mDNS Service Discovery**
+
 ### Windows (PowerShell)
+
 ```powershell
 Get-Service | Where-Object { $_.Name -like "*Bonjour*" }
 ```
+
 ### MacOS
+
 ```sh
 dns-sd -B _zendure._tcp
-```    
+```
+
 ### Linux
+
 ```sh
 avahi-browse -r _zendure._tcp
-```  
+```
 
 ## **Usage Examples**
 
@@ -117,4 +126,5 @@ curl -X POST "http://<server-ip>/properties/write" -H "Content-Type: application
 ```
 
 ## Product Properties Descriptions
+
 * [SolarFlow 800](./docs/en_properties.md)

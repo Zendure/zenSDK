@@ -39,6 +39,8 @@ Dieses Dokument unterstützt derzeit die folgenden Produkte:
 | Produktname       | Firmware-Version | Anmerkungen |
 | ----------------- | ---------------- | ----------- |
 | SolarFlow 800     | 1.0.2            |             |
+| SolarFlow 2400 AC | TBD              |       |
+| SolarFlow 800 Pro | TBD              |       |
 | Wird aktualisiert |                  |             |
 
 # **🚀 Hauptfunktionen**

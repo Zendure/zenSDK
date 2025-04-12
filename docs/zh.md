@@ -2,7 +2,7 @@
  * @Author: dav1d wei.liu@zendure.com
  * @Date: 2025-03-04 14:39:17
  * @LastEditors: dav1d wei.liu@zendure.com
- * @LastEditTime: 2025-03-05 19:40:00
+ * @LastEditTime: 2025-04-12 17:28:57
  * @FilePath: /zenSDK/docs/zh.md
  * @Description: 
  * 
@@ -52,6 +52,8 @@
 | 产品名称      | 固件版本 | 备注 |
 | ------------- | -------- | ---- |
 | SolarFlow 800 | 1.0.2    |      |
+| SolarFlow 2400 AC | TBD              |       |
+| SolarFlow 800 Pro | TBD              |       |
 | 待更新        |          |      |
 
 # **🚀 主要功能**

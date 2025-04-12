@@ -39,6 +39,8 @@ Ce document prend actuellement en charge les produits suivants :
 | Nom du produit          | Version du firmware | Remarques |
 | ----------------------- | ------------------- | --------- |
 | SolarFlow 800           | 1.0.2               |           |
+| SolarFlow 2400 AC | TBD              |       |
+| SolarFlow 800 Pro | TBD              |       |
 | Mise à jour en attente |                     |           |
 
 # **🚀 Fonctionnalités principales**
