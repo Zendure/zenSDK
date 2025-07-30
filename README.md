@@ -1,4 +1,5 @@
-# Zendure Local Control System v1.0.0
+# Zendure Local Control System
+
 ---
 
 <p align="center">
@@ -6,6 +7,7 @@
 </p>
 
 # 📖 Documentation Navigator
+
 This project offers documentation in multiple languages. Choose the one you need:
 
 * 🇨🇳 [中文 ](./docs/zh.md)
@@ -16,14 +18,14 @@ This project offers documentation in multiple languages. Choose the one you need
 ---
 
 # 🌟 Overview
-During the development of our previous [Device Data Report Project](https://github.com/Zendure/developer-device-data-report) we identified a strong need for improved local control.  
-As a response, the team created the IoT framework **ZenSDK** and is now opening the **Local API** to help developers achieve:
 
-- Real-time device status & property retrieval  
-- Event stream subscription  
-- Remote function control  
-- Integration of third-party MQTT clients (including [Home Assistant](https://www.home-assistant.io/integrations/mqtt/))  
-- Custom feature development through open APIs to enhance user experience  
+During the development of our previous [Device Data Report Project](https://github.com/Zendure/developer-device-data-report) we identified a strong need for improved local control.As a response, the team created the IoT framework **ZenSDK** and is now opening the **Local API** to help developers achieve:
+
+- Real-time device status & property retrieval
+- Event stream subscription
+- Remote function control
+- Integration of third-party MQTT clients (including [Home Assistant](https://www.home-assistant.io/integrations/mqtt/))
+- Custom feature development through open APIs to enhance user experience
 
 Have an innovative idea for **Zendure** products? Feel free to reach out!
 
@@ -31,13 +33,13 @@ Have an innovative idea for **Zendure** products? Feel free to reach out!
 
 # 📌 Supported Products
 
-| Model               | Firmware Version | Status        |
-| ------------------- | ---------------- | ------------- |
-| SolarFlow800        | Latest           | Ready         |
-| SolarFlow800 Pro    | Latest           | In development|
-| SolarFlow2400 AC    | Latest           | In development|
-| SmartMeter3CT       | Latest           | In development|
-| (More coming soon)  | –                | Stay tuned    |
+| Model              | Firmware Version | Status         |
+| ------------------ | ---------------- | -------------- |
+| SolarFlow800       | Latest           | Ready          |
+| SolarFlow800 Pro   | Latest           | In development |
+| SolarFlow2400 AC   | Latest           | In development |
+| SmartMeter3CT      | Latest           | In development |
+| (More coming soon) | –               | Stay tuned     |
 
 ---
 
@@ -46,36 +48,39 @@ Have an innovative idea for **Zendure** products? Feel free to reach out!
 Local control is achieved via a combination of **mDNS service discovery** and **HTTP server communication**:
 
 ## 1. Device Discovery (mDNS)
+
 After connecting to the network, the device broadcasts its service information through **mDNS**:
 
-- Service name: `Zendure-<Model>-<Last12MAC>`  
-  (e.g. `Zendure-SolarFlow800-WOB1NHMAMXXXXX3`)
-- IP address  
-- HTTP service port  
+- Service name: `Zendure-<Model>-<Last12MAC>`(e.g. `Zendure-SolarFlow800-WOB1NHMAMXXXXX3`)
+- IP address
+- HTTP service port
 
 Clients on the same LAN can listen for these broadcasts to automatically discover devices.
 
 ## 2. Device Communication (HTTP RESTful API)
+
 Each device hosts an internal HTTP server.
 
 ### Basic Operations
 
-| Method | Purpose                        | Example                                     |
-| ------ | ----------------------------- | ------------------------------------------- |
-| `GET`  | Query device status/properties | `GET /properties/report` (all properties)   |
-| `POST` | Send control/config commands   | `POST /properties/write` (set properties)   |
+| Method   | Purpose                        | Example                                     |
+| -------- | ------------------------------ | ------------------------------------------- |
+| `GET`  | Query device status/properties | `GET /properties/report` (all properties) |
+| `POST` | Send control/config commands   | `POST /properties/write` (set properties) |
 
 ### Data Format
 
-- **GET**: No body, response in JSON.  
+- **GET**: No body, response in JSON.
 - **POST**: JSON body must include device serial number `sn` (required).
 
 #### Example 1: Get device properties
+
 ```http
 GET /properties/report
 ```
 
 #### Example 2: Send control/config command
+
 ```http
 POST /properties/write
 Content-Type: application/json
@@ -89,16 +94,19 @@ Content-Type: application/json
 ```
 
 #### Example 3: Check MQTT status
+
 ```http
 GET /rpc?method=HA.Mqtt.GetStatus
 ```
 
 #### Example 4: Get MQTT configuration
+
 ```http
 GET /rpc?method=HA.Mqtt.GetConfig
 ```
 
 #### Example 5: Set MQTT configuration
+
 ```http
 POST /rpc
 Content-Type: application/json
@@ -123,22 +131,24 @@ Content-Type: application/json
 
 ## System-level mDNS discovery commands
 
-| OS       | Command example                            | Description                       |
-| -------- | ------------------------------------------ | --------------------------------- |
-| Windows  | `Get-Service \| Where-Object { $_.Name -like "*Bonjour*" }` | Check Bonjour service            |
-| macOS    | `dns-sd -B _zendure._tcp`                  | Browse Zendure devices            |
-| Linux    | `avahi-browse -r _zendure._tcp`            | Discover `_zendure._tcp` services |
+| OS      | Command example                                              | Description                         |
+| ------- | ------------------------------------------------------------ | ----------------------------------- |
+| Windows | `Get-Service \| Where-Object { $_.Name -like "*Bonjour*" }` | Check Bonjour service               |
+| macOS   | `dns-sd -B _zendure._tcp`                                  | Browse Zendure devices              |
+| Linux   | `avahi-browse -r _zendure._tcp`                            | Discover `_zendure._tcp` services |
 
 ## Multi-language Samples
-- [C](./examples/C/demo.c)  
-- [C#](./examples/C%23/demo.cs)  
-- [Java](./examples/Java/demo.java)  
-- [JavaScript](./examples/JavaScript/demo.js)  
-- [PHP](./examples/PHP/demo.php)  
-- [Python](./examples/Python/demo.py)  
+
+- [C](./examples/C/demo.c)
+- [C#](./examples/C%23/demo.cs)
+- [Java](./examples/Java/demo.java)
+- [JavaScript](./examples/JavaScript/demo.js)
+- [PHP](./examples/PHP/demo.php)
+- [Python](./examples/Python/demo.py)
 - [CLI quick test](#command-line-quick-test)
 
 ### Command-line quick test
+
 ```bash
 # Get all properties
 curl -X GET "http://<device-ip>/properties/report"
@@ -155,7 +165,8 @@ curl -X POST "http://<device-ip>/properties/write" \
 ---
 
 # 📚 Property Reference
-Detailed property definitions for each product:  
+
+Detailed property definitions for each product:
 [SolarFlow Series Property Doc](./docs/en_properties.md)
 
 ---

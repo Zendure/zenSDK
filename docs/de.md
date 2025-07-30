@@ -1,4 +1,5 @@
-# Zendure Lokales Steuersystem v1.0.0
+# Zendure Lokales Steuersystem
+
 ---
 
 <p align="center">
@@ -6,6 +7,7 @@
 </p>
 
 # 📖 Dokumenten­navigation
+
 Dieses Projekt stellt mehrsprachige Dokumente bereit. Wählen Sie Ihre Sprache :
 
 * 🇨🇳 [中文](./zh.md)
@@ -16,14 +18,14 @@ Dieses Projekt stellt mehrsprachige Dokumente bereit. Wählen Sie Ihre Sprache :
 ---
 
 # 🌟 Überblick
-In unserem vorherigen [Device-Data-Report-Projekt](https://github.com/Zendure/developer-device-data-report) zeigte sich ein klarer Bedarf an optimierter lokaler Steuerung.  
-Daraufhin entwickelte das Team das IoT-Framework **ZenSDK** und veröffentlicht nun seine **lokale API**, mit der Entwickler Folgendes realisieren können :
 
-- Abruf von Gerätestatus und -eigenschaften in Echtzeit  
-- Abonnieren von Geräte-Datenströmen  
-- Fernsteuerung von Gerätefunktionen  
-- Anbindung beliebiger MQTT-Clients (u. a. [Home Assistant](https://www.home-assistant.io/integrations/mqtt/))  
-- Entwicklung individueller Features über offene APIs zur Steigerung des Benutzererlebnisses  
+In unserem vorherigen [Device-Data-Report-Projekt](https://github.com/Zendure/developer-device-data-report) zeigte sich ein klarer Bedarf an optimierter lokaler Steuerung.Daraufhin entwickelte das Team das IoT-Framework **ZenSDK** und veröffentlicht nun seine **lokale API**, mit der Entwickler Folgendes realisieren können :
+
+- Abruf von Gerätestatus und -eigenschaften in Echtzeit
+- Abonnieren von Geräte-Datenströmen
+- Fernsteuerung von Gerätefunktionen
+- Anbindung beliebiger MQTT-Clients (u. a. [Home Assistant](https://www.home-assistant.io/integrations/mqtt/))
+- Entwicklung individueller Features über offene APIs zur Steigerung des Benutzererlebnisses
 
 Haben Sie innovative Ideen zu **Zendure**-Produkten? Kontaktieren Sie uns gern!
 
@@ -31,13 +33,13 @@ Haben Sie innovative Ideen zu **Zendure**-Produkten? Kontaktieren Sie uns gern!
 
 # 📌 Unterstützte Produkte
 
-| Modell               | Firmware-Version | Status            |
-| -------------------- | ---------------- | ----------------- |
-| SolarFlow800         | Neueste          | Einsatzbereit     |
-| SolarFlow800 Pro     | Neueste          | In Entwicklung    |
-| SolarFlow2400 AC     | Neueste          | In Entwicklung    |
-| SmartMeter3CT        | Neueste          | In Entwicklung    |
-| (Weitere folgen)     | –                | Demnächst         |
+| Modell           | Firmware-Version | Status         |
+| ---------------- | ---------------- | -------------- |
+| SolarFlow800     | Neueste          | Einsatzbereit  |
+| SolarFlow800 Pro | Neueste          | In Entwicklung |
+| SolarFlow2400 AC | Neueste          | In Entwicklung |
+| SmartMeter3CT    | Neueste          | In Entwicklung |
+| (Weitere folgen) | –               | Demnächst     |
 
 ---
 
@@ -46,36 +48,39 @@ Haben Sie innovative Ideen zu **Zendure**-Produkten? Kontaktieren Sie uns gern!
 Die lokale Steuerung basiert auf der Kombination aus **mDNS-Service­-Discovery** und **HTTP-Server-Kommunikation**.
 
 ## 1. Geräteerkennung (mDNS)
+
 Nach dem Netzstart sendet das Gerät mittels **mDNS** folgende Informationen :
 
-- Service-Name: `Zendure-<Modell>-<letzte12Mac>`  
-  (z. B. `Zendure-SolarFlow800-WOB1NHMAMXXXXX3`)
-- IP-Adresse  
-- HTTP-Port  
+- Service-Name: `Zendure-<Modell>-<letzte12Mac>`(z. B. `Zendure-SolarFlow800-WOB1NHMAMXXXXX3`)
+- IP-Adresse
+- HTTP-Port
 
 Clients im selben LAN können diese Broadcasts empfangen und Geräte automatisch entdecken.
 
 ## 2. Geräteschnittstelle (HTTP-RESTful API)
+
 Jedes Gerät betreibt einen internen HTTP-Server.
 
 ### Grundoperationen
 
-| Methode | Zweck                              | Beispiel                                   |
-| ------- | ---------------------------------- | ------------------------------------------ |
-| `GET`   | Gerätestatus / Eigenschaften lesen | `GET /properties/report` (alle Eigenschaften) |
-| `POST`  | Steuer- oder Konfig-Befehle senden | `POST /properties/write` (Eigenschaften setzen) |
+| Methode  | Zweck                               | Beispiel                                          |
+| -------- | ----------------------------------- | ------------------------------------------------- |
+| `GET`  | Gerätestatus / Eigenschaften lesen | `GET /properties/report` (alle Eigenschaften)   |
+| `POST` | Steuer- oder Konfig-Befehle senden  | `POST /properties/write` (Eigenschaften setzen) |
 
 ### Datenformate
 
-- **GET**: Kein Request-Body, Antwort in JSON  
+- **GET**: Kein Request-Body, Antwort in JSON
 - **POST**: JSON-Body, Pflichtfeld `sn` (Seriennummer)
 
 #### Beispiel 1: Eigenschaften abfragen
+
 ```http
 GET /properties/report
 ```
 
 #### Beispiel 2: Steuer-/Konfig­-Befehl senden
+
 ```http
 POST /properties/write
 Content-Type: application/json
@@ -89,16 +94,19 @@ Content-Type: application/json
 ```
 
 #### Beispiel 3: MQTT-Status prüfen
+
 ```http
 GET /rpc?method=HA.Mqtt.GetStatus
 ```
 
 #### Beispiel 4: MQTT-Konfiguration abrufen
+
 ```http
 GET /rpc?method=HA.Mqtt.GetConfig
 ```
 
 #### Beispiel 5: MQTT-Konfiguration setzen
+
 ```http
 POST /rpc
 Content-Type: application/json
@@ -123,22 +131,24 @@ Content-Type: application/json
 
 ## mDNS-Erkennung auf Systemebene
 
-| Betriebssystem | Beispielbefehl                                          | Beschreibung                           |
-| -------------- | ------------------------------------------------------- | -------------------------------------- |
-| Windows        | `Get-Service \| Where-Object { $_.Name -like "*Bonjour*" }` | Bonjour-Dienst prüfen                  |
-| macOS          | `dns-sd -B _zendure._tcp`                               | Zendure-Geräte durchsuchen             |
-| Linux          | `avahi-browse -r _zendure._tcp`                         | Services `_zendure._tcp` entdecken     |
+| Betriebssystem | Beispielbefehl                                               | Beschreibung                         |
+| -------------- | ------------------------------------------------------------ | ------------------------------------ |
+| Windows        | `Get-Service \| Where-Object { $_.Name -like "*Bonjour*" }` | Bonjour-Dienst prüfen               |
+| macOS          | `dns-sd -B _zendure._tcp`                                  | Zendure-Geräte durchsuchen          |
+| Linux          | `avahi-browse -r _zendure._tcp`                            | Services `_zendure._tcp` entdecken |
 
 ## Code-Beispiele
-- [C](../examples/C/demo.c)  
-- [C#](../examples/C%23/demo.cs)  
-- [Java](../examples/Java/demo.java)  
-- [JavaScript](../examples/JavaScript/demo.js)  
-- [PHP](../examples/PHP/demo.php)  
-- [Python](../examples/Python/demo.py)  
+
+- [C](../examples/C/demo.c)
+- [C#](../examples/C%23/demo.cs)
+- [Java](../examples/Java/demo.java)
+- [JavaScript](../examples/JavaScript/demo.js)
+- [PHP](../examples/PHP/demo.php)
+- [Python](../examples/Python/demo.py)
 - [CLI-Schnelltest](#cli-schnelltest)
 
 ### CLI-Schnelltest
+
 ```bash
 # Alle Eigenschaften abrufen
 curl -X GET "http://<gerät-ip>/properties/report"
@@ -155,7 +165,8 @@ curl -X POST "http://<gerät-ip>/properties/write" \
 ---
 
 # 📚 Eigenschaftsreferenz
-Detaillierte Eigenschaftsbeschreibungen je Produkt finden Sie hier :  
+
+Detaillierte Eigenschaftsbeschreibungen je Produkt finden Sie hier :
 [SolarFlow-Serien-Eigenschaften](./de_properties.md)
 
 ---
