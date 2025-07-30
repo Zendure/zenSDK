@@ -1,14 +1,12 @@
 # Zendure Local Control System v1.0.0
-
 ---
 
 <p align="center">
-  <img src="https://zendure.com/cdn/shop/files/zendure-logo-infinity-charge_240x.png?v=1717728038" alt="Logo">
+  <img src="https://zendure.com/cdn/shop/files/zendure-logo-infinity-charge_240x.png?v=1717728038" alt="Zendure Logo" width="240">
 </p>
 
-# 📖 Documentation Guide
-
-This project contains multilingual documentation. Please select your language:
+# 📖 Documentation Navigator
+This project offers documentation in multiple languages. Choose the one you need:
 
 * 🇨🇳 [中文 ](./docs/zh.md)
 * 🇬🇧 [English](./README.md)
@@ -17,114 +15,147 @@ This project contains multilingual documentation. Please select your language:
 
 ---
 
-# Overview
+# 🌟 Overview
+During the development of our previous [Device Data Report Project](https://github.com/Zendure/developer-device-data-report) we identified a strong need for improved local control.  
+As a response, the team created the IoT framework **ZenSDK** and is now opening the **Local API** to help developers achieve:
 
-I am **David**, an IoT development engineer at **Zendure**, and I am passionate about **Zendure IoT products**.
+- Real-time device status & property retrieval  
+- Event stream subscription  
+- Remote function control  
+- Integration of third-party MQTT clients (including [Home Assistant](https://www.home-assistant.io/integrations/mqtt/))  
+- Custom feature development through open APIs to enhance user experience  
 
-In past [projects](https://github.com/Zendure/developer-device-data-report), we encountered several challenges. To address these, I have been dedicated to developing a new IoT architecture, ZenSDK. I am eager to hear your suggestions to enhance the user experience. Now, I am opening up the **Local API Interface**, allowing developers to:
-
-* Retrieve their own device information
-* Receive device data
-* Control devices via API
-* Perform creative secondary development to optimize user experience
-
-If you have **innovative ideas** for **Zendure** products, feel free to contact me! In my spare time, I will continue optimizing to provide every **Zendure enthusiast** with an **exceptional product experience**! 🚀
-
----
-
-# 📌 Project Introduction
-
-This document currently supports the following products:
-
-| Product Name      | Firmware Version | Notes |
-| ----------------- | ---------------- | ----- |
-| SolarFlow 800     | 1.0.2            |       |
-| SolarFlow 2400 AC | TBD              |       |
-| SolarFlow 800 Pro | TBD              |       |
-| To be updated |                  |       |
-
-# **🚀 Key Features**
-
-Local control is achieved through a combination of **mDNS service** and **HTTP Server service**, enabling automatic device discovery and efficient communication.
-
-> 1. **Device Discovery**: Utilizing the **mDNS (Multicast DNS)** protocol, devices within the same local network are automatically discovered, dynamically retrieving service information such as IP address and service port.
-> 2. **Device Communication**: Based on the **HTTP protocol**, devices can exchange data through **RESTful APIs**, ensuring efficient and stable local control and collaboration.
-
-## **📖 Terminology**
-
-| Term                                         | Description                                                                                                                                                    |
-| -------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **mDNS (Multicast DNS)**               | A**zero-configuration network discovery protocol** for local networks, allowing devices to resolve and discover each other without a central DNS server. |
-| **HTTP (HyperText Transfer Protocol)** | A**request/response** communication protocol widely used for data exchange between clients and servers, suitable for local network device communication. |
-| **RESTful API**                        | A**HTTP-based** API design style that provides a uniform resource access interface with excellent **scalability** and **simplicity**.        |
+Have an innovative idea for **Zendure** products? Feel free to reach out!
 
 ---
 
-## **Device Discovery Mechanism**
+# 📌 Supported Products
 
-* **mDNS Broadcast**: When a device starts and connects to the network, it broadcasts its service name and type via mDNS. The hostname always follows the format `Zendure-<model>-XXXXXXXXXXXX`, providing the device's IP address and HTTP service port. Other devices listen for mDNS broadcasts within the local network to obtain new device information.
-* **Service Name Convention**: Device names can include device type and serial number (SN) to help other devices quickly identify their function or role.
-* Example: `Zendure-<model>-XXXXXXXXXXXX`
+| Model               | Firmware Version | Status        |
+| ------------------- | ---------------- | ------------- |
+| SolarFlow800        | Latest           | Ready         |
+| SolarFlow800 Pro    | Latest           | In development|
+| SolarFlow2400 AC    | Latest           | In development|
+| SmartMeter3CT       | Latest           | In development|
+| (More coming soon)  | –                | Stay tuned    |
 
-## **Device Communication Mechanism**
+---
 
-* **HTTP API Communication**: Each device runs an HTTP server within the local network, allowing other devices to communicate via HTTP. With a RESTful API design, the following operations are supported:
-  * **GET Requests**: Retrieve device status or data. For example, obtain all device attributes.
-  * **POST Requests**: Send control commands. For example, toggle device power.
+# 🚀 Core Architecture
 
-API Example:
+Local control is achieved via a combination of **mDNS service discovery** and **HTTP server communication**:
 
-```HTTP
-GET  /properties/report     # Retrieve all current device properties
-POST /properties/write      # Send control commands, such as switching the device on/off
+## 1. Device Discovery (mDNS)
+After connecting to the network, the device broadcasts its service information through **mDNS**:
+
+- Service name: `Zendure-<Model>-<Last12MAC>`  
+  (e.g. `Zendure-SolarFlow800-WOB1NHMAMXXXXX3`)
+- IP address  
+- HTTP service port  
+
+Clients on the same LAN can listen for these broadcasts to automatically discover devices.
+
+## 2. Device Communication (HTTP RESTful API)
+Each device hosts an internal HTTP server.
+
+### Basic Operations
+
+| Method | Purpose                        | Example                                     |
+| ------ | ----------------------------- | ------------------------------------------- |
+| `GET`  | Query device status/properties | `GET /properties/report` (all properties)   |
+| `POST` | Send control/config commands   | `POST /properties/write` (set properties)   |
+
+### Data Format
+
+- **GET**: No body, response in JSON.  
+- **POST**: JSON body must include device serial number `sn` (required).
+
+#### Example 1: Get device properties
+```http
+GET /properties/report
 ```
 
-* **Communication Message Format**: The POST method uses JSON for data transmission, ensuring easy parsing and cross-platform compatibility. Each device should follow a unified JSON data structure for seamless communication.
+#### Example 2: Send control/config command
+```http
+POST /properties/write
+Content-Type: application/json
 
-```
 {
-    "sn": "WOB1NHMAMXXXXX3", // Required
-    "properties": {
-        "acMode": 2 // Corresponding readable/writable attribute
-    }
+  "sn": "WOB1NHMAMXXXXX3",      // Required
+  "properties": {
+    "acMode": 2                 // Writable property
+  }
 }
 ```
 
-## **Windows/MacOS/Linux mDNS Service Discovery**
-
-### Windows (PowerShell)
-
-```powershell
-Get-Service | Where-Object { $_.Name -like "*Bonjour*" }
+#### Example 3: Check MQTT status
+```http
+GET /rpc?method=HA.Mqtt.GetStatus
 ```
 
-### MacOS
-
-```sh
-dns-sd -B _zendure._tcp
+#### Example 4: Get MQTT configuration
+```http
+GET /rpc?method=HA.Mqtt.GetConfig
 ```
 
-### Linux
+#### Example 5: Set MQTT configuration
+```http
+POST /rpc
+Content-Type: application/json
 
-```sh
-avahi-browse -r _zendure._tcp
+{
+  "sn": "WOB1NHMAMXXXXX3",
+  "method": "HA.Mqtt.SetConfig",
+  "params": {
+    "config": {
+      "enable": true,
+      "server": "mqtt://192.168.50.48:1883",
+      "username": "zendure",
+      "password": "zendure"
+    }
+  }
+}
 ```
 
-## **Usage Examples**
+---
 
-* [C Example](./examples/C/demo.c)
-* [C# Example](./examples/C#/demo.cpp)
-* [Java Example](./examples/Java/demo.java)
-* [JavaScript Example](./examples/JavaScript/demo.js)
-* [PHP Example](./examples/PHP/demo.php)
-* [Python Example](./examples/Python/demo.py)
-* **Windows/MacOS/Linux Command Line**
+# 🛠️ Development Tools
 
-```sh
-curl -X GET "http://<server-ip>/properties/report"
-curl -X POST "http://<server-ip>/properties/write" -H "Content-Type: application/json" -d '{"sn": "your_device_sn","properties":{"acMode":2}}'
+## System-level mDNS discovery commands
+
+| OS       | Command example                            | Description                       |
+| -------- | ------------------------------------------ | --------------------------------- |
+| Windows  | `Get-Service \| Where-Object { $_.Name -like "*Bonjour*" }` | Check Bonjour service            |
+| macOS    | `dns-sd -B _zendure._tcp`                  | Browse Zendure devices            |
+| Linux    | `avahi-browse -r _zendure._tcp`            | Discover `_zendure._tcp` services |
+
+## Multi-language Samples
+- [C](../examples/C/demo.c)  
+- [C#](../examples/C#/demo.cpp)  
+- [Java](../examples/Java/demo.java)  
+- [JavaScript](../examples/JavaScript/demo.js)  
+- [PHP](../examples/PHP/demo.php)  
+- [Python](../examples/Python/demo.py)  
+- [CLI quick test](#command-line-quick-test)
+
+### Command-line quick test
+```bash
+# Get all properties
+curl -X GET "http://<device-ip>/properties/report"
+
+# Query MQTT status
+curl -X GET "http://<device-ip>/rpc?method=HA.Mqtt.GetStatus"
+
+# Set acMode property
+curl -X POST "http://<device-ip>/properties/write" \
+  -H "Content-Type: application/json" \
+  -d '{"sn": "your_device_sn", "properties": { "acMode": 2 }}'
 ```
 
-## Product Properties Descriptions
+---
 
-* [SolarFlow 800](./docs/en_properties.md)
+# 📚 Property Reference
+Detailed property definitions for each product:  
+[SolarFlow Series Property Doc](./docs/en_properties.md)
+
+---
