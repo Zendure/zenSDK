@@ -2,7 +2,7 @@
  * @Author: dav1d wei.liu@zendure.com
  * @Date: 2025-03-04 14:39:17
  * @LastEditors: dav1d wei.liu@zendure.com
- * @LastEditTime: 2025-07-29 16:01:26
+ * @LastEditTime: 2025-07-30 19:24:24
  * @FilePath: /zenSDK/docs/zh.md
  * @Description: 征拓产品本地控制系统技术文档（v1.0.0）
  * 
@@ -152,7 +152,7 @@ Content-Type: application/json
 ## 多语言调用示例
 
 - [C 语言示例](../examples/C/demo.c)
-- [C# 示例](../examples/C#/demo.cpp)
+- [C# 示例](../examples/C%23/demo.cs)
 - [Java 示例](../examples/Java/demo.java)
 - [JavaScript 示例](../examples/JavaScript/demo.js)
 - [PHP 示例](../examples/PHP/demo.php)

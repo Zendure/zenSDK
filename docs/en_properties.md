@@ -2,7 +2,7 @@
  * @Author: dav1d wei.liu@zendure.com
  * @Date: 2025-03-05 18:45:36
  * @LastEditors: dav1d wei.liu@zendure.com
- * @LastEditTime: 2025-03-05 19:38:46
+ * @LastEditTime: 2025-07-30 19:18:09
  * @FilePath: /zenSDK/docs/en_properties.md
  * @Description: 
  * 
@@ -61,17 +61,6 @@
 | minSoc | int | 0-500: 0%-50% |
 | gridReverse | int | 0: Disabled, 1: Allowed reverse flow, 2: Forbidden reverse flow |
 | inverseMaxPower | int | Maximum output power limit |
-| gridStandard | int | **Do not use** |
-| lampSwitch | int | **Do not use** |
-| IOTState | int | **Do not use** |
-| factoryModeState | int | **Do not use** |
-| OTAState | int | **Do not use** |
-| LCNState | int | **Do not use** |
-| oldMode | int | **Do not use** |
-| VoltWakeup | int | **Do not use** |
-| ts | int | **Do not use** |
-| bindstate | int | **Do not use** |
-| tsZone | int | **Do not use** |
-| chargeMaxLimit | int | **Do not use** |
-| smartMode | int | **Do not use** |
+| gridStandard | int | Grid connection standard 0: Germany 1: France 2: Austria |
+
 

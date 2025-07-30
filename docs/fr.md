@@ -131,7 +131,7 @@ Content-Type: application/json
 
 ## Exemples de code
 - [C](../examples/C/demo.c)  
-- [C#](../examples/C#/demo.cpp)  
+- [C#](../examples/C%23/demo.cs)  
 - [Java](../examples/Java/demo.java)  
 - [JavaScript](../examples/JavaScript/demo.js)  
 - [PHP](../examples/PHP/demo.php)  

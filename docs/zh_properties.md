@@ -2,8 +2,8 @@
  * @Author: dav1d wei.liu@zendure.com
  * @Date: 2025-03-05 18:45:36
  * @LastEditors: dav1d wei.liu@zendure.com
- * @LastEditTime: 2025-03-05 19:34:42
- * @FilePath: /zenSDK/docs/properties.md
+ * @LastEditTime: 2025-07-30 19:17:27
+ * @FilePath: /zenSDK/docs/zh_properties.md
  * @Description: 
  * 
  * Copyright (c) 2025 by Zendure, All Rights Reserved. 
@@ -59,17 +59,6 @@
 | minSoc | int | 0-500: 0%-50% |
 | gridReverse | int | 0:未启用, 1:允许倒灌, 2:禁止倒灌 |
 | inverseMaxPower | int | 最大输出功率限制 |
-| gridStandard | int | 请勿使用 |
-| lampSwitch | int | 请勿使用 |
-| IOTState | int | 请勿使用 |
-| factoryModeState | int | 请勿使用 |
-| OTAState | int | 请勿使用 |
-| LCNState | int | 请勿使用 |
-| oldMode | int | 请勿使用 |
-| VoltWakeup | int | 请勿使用 |
-| ts | int | 请勿使用 |
-| bindstate | int | 请勿使用 |
-| tsZone | int | 请勿使用 |
-| chargeMaxLimit | int | 请勿使用 |
-| smartMode | int | 请勿使用 |
+| gridStandard | int | 并网标准 0：德国 1：法国 2：奥地利 |
+
 

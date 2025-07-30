@@ -130,12 +130,12 @@ Content-Type: application/json
 | Linux    | `avahi-browse -r _zendure._tcp`            | Discover `_zendure._tcp` services |
 
 ## Multi-language Samples
-- [C](../examples/C/demo.c)  
-- [C#](../examples/C#/demo.cpp)  
-- [Java](../examples/Java/demo.java)  
-- [JavaScript](../examples/JavaScript/demo.js)  
-- [PHP](../examples/PHP/demo.php)  
-- [Python](../examples/Python/demo.py)  
+- [C](./examples/C/demo.c)  
+- [C#](./examples/C%23/demo.cs)  
+- [Java](./examples/Java/demo.java)  
+- [JavaScript](./examples/JavaScript/demo.js)  
+- [PHP](./examples/PHP/demo.php)  
+- [Python](./examples/Python/demo.py)  
 - [CLI quick test](#command-line-quick-test)
 
 ### Command-line quick test
