@@ -33,13 +33,13 @@ Une idée innovante autour des produits **Zendure** ? Contactez-nous !
 
 # 📌 Produits pris en charge
 
-| Modèle               | Version du firmware | Statut             |
-| --------------------- | ------------------- | ------------------ |
-| SolarFlow800          | Dernière           | Prêt à l’emploi |
-| SolarFlow800 Pro      | Dernière           | En développement  |
-| SolarFlow2400 AC      | Dernière           | En développement  |
-| SmartMeter3CT         | Dernière           | En développement  |
-| (Bientôt disponible) | –                  | À venir           |
+| Modèle               | Version du firmware | Statut |
+| --------------------- | ------------------- | ------ |
+| SolarFlow800          | Dernière           |        |
+| SolarFlow800 Pro      | Dernière           |        |
+| SolarFlow2400 AC      | Dernière           |        |
+| SmartMeter3CT         | Dernière           |        |
+| (Bientôt disponible) | –                  |        |
 
 ---
 
