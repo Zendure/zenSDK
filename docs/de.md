@@ -116,11 +116,13 @@ Content-Type: application/json
   "method": "HA.Mqtt.SetConfig",
   "params": {
     "config": {
-      "enable": true,
-      "server": "mqtt://192.168.50.48:1883",
-      "username": "zendure",
-      "password": "zendure"
-    }
+        "enable": true,
+        "server": "192.168.50.48",
+        "port":1883,
+        "protocol":"mqtt",
+        "username": "zendure",
+        "password": "zendure"
+      }
   }
 }
 ```

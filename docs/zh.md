@@ -2,7 +2,7 @@
  * @Author: dav1d wei.liu@zendure.com
  * @Date: 2025-03-04 14:39:17
  * @LastEditors: dav1d wei.liu@zendure.com
- * @LastEditTime: 2025-07-30 19:24:24
+ * @LastEditTime: 2025-08-26 17:00:12
  * @FilePath: /zenSDK/docs/zh.md
  * @Description: 征拓产品本地控制系统技术文档（v1.0.0）
  * 
@@ -130,7 +130,9 @@ Content-Type: application/json
   "params": {
     "config": {
       "enable": true,
-      "server": "mqtt://192.168.50.48:1883",
+      "server": "192.168.50.48",
+      "port":1883,
+      "protocol":"mqtt",
       "username": "zendure",
       "password": "zendure"
     }

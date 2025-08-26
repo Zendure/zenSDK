@@ -117,7 +117,9 @@ Content-Type: application/json
   "params": {
     "config": {
       "enable": true,
-      "server": "mqtt://192.168.50.48:1883",
+      "server": "192.168.50.48",
+      "port":1883,
+      "protocol":"mqtt",
       "username": "zendure",
       "password": "zendure"
     }
