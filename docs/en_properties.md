@@ -75,3 +75,4 @@ According to the protocol definition, divide the value by **10** to obtain the a
 | gridReverse     | int       | 0: Disabled, 1: Allowed reverse flow, 2: Forbidden reverse flow |
 | inverseMaxPower | int       | Maximum output power limit                                      |
 | gridStandard    | int       | Grid connection standard 0: Germany 1: France 2: Austria        |
+| smartMode       | int       | 1: The setting parameter is not written to flash. After an unexpected power loss and restart, the device will use the value stored in flash.	0: The setting parameter is written to flash.       |
