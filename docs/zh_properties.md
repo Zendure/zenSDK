@@ -1,15 +1,15 @@
 <!--
  * @Author: dav1d wei.liu@zendure.com
  * @Date: 2025-03-05 18:45:36
- * @LastEditors: dav1d wei.liu@zendure.com
- * @LastEditTime: 2025-07-30 19:17:27
+ * @LastEditors: dav1dBoy 492664938@qq.com
+ * @LastEditTime: 2026-01-04 14:42:11
  * @FilePath: /zenSDK/docs/zh_properties.md
  * @Description: 
  * 
  * Copyright (c) 2025 by Zendure, All Rights Reserved. 
 -->
 
-# **SolarFlow 800**
+# **SolarFlow 800** **SolarFlow 800 PRO/AC** **SolarFlow 800 PRO/AC** **SolarFlow 2400AC** 
 
 ## **电池包数据属性解析**
 

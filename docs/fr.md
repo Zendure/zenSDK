@@ -31,6 +31,17 @@ Une idée innovante autour des produits **Zendure** ? Contactez-nous !
 
 ---
 
+# 🆕 Mises à jour
+
+- Mise à jour de la connexion du client MQTT de ZenSDK conformément à EN 18031 ; utilisation de TLS pour se connecter au serveur MQTT Zendure.
+- Fourniture d’un client MQTT configurable par l’utilisateur, uniquement sans TLS ; le port 8883 et mqtts:// ne sont pas pris en charge.
+- Longueur de réception de l’API locale définie à 512 octets.
+- Mise à jour et correction des problèmes connus.
+- En mode EN 18031, les requêtes HTTP ne sont pas prises en charge par défaut.
+- Pour activer l’API locale, ajouter HEMS puis quitter pour appliquer.
+
+---
+
 # 📌 Produits pris en charge
 
 | Modèle               | Version du firmware | Statut |

@@ -31,6 +31,17 @@ Haben Sie innovative Ideen zu **Zendure**-Produkten? Kontaktieren Sie uns gern!
 
 ---
 
+# 🆕 Aktualisierungen
+
+- Aktualisierung der ZenSDK-MQTT-Client-Verbindung gemäß EN 18031; TLS-Verbindung zum Zendure-MQTT-Server.
+- Bereitstellen eines benutzerkonfigurierbaren MQTT-Clients, ausschließlich ohne TLS; Port 8883 und mqtts:// werden nicht unterstützt.
+- Empfangslänge der lokalen API auf 512 Byte festgelegt.
+- Aktualisierung und Behebung bekannter Probleme.
+- Unter EN 18031 sind HTTP-Anfragen standardmäßig nicht unterstützt.
+- Zum Aktivieren der lokalen API HEMS hinzufügen und anschließend beenden, damit die Änderung wirksam wird.
+
+---
+
 # 📌 Unterstützte Produkte
 
 | Modell           | Firmware-Version | Status |
