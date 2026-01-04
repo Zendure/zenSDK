@@ -2,9 +2,9 @@
  * @Author: dav1d wei.liu@zendure.com
  * @Date: 2025-03-04 14:39:17
  * @LastEditors: dav1dBoy 492664938@qq.com
- * @LastEditTime: 2026-01-04 14:54:44
+ * @LastEditTime: 2026-01-04 14:58:57
  * @FilePath: /zenSDK/docs/zh.md
- * @Description: 征拓产品本地控制系统技术文档（v1.0.0）
+ * @Description: 征拓产品本地控制系统技术文档（v1.0.1）
  * 
  * Copyright (c) 2025 by Zendure, All Rights Reserved. 
 -->

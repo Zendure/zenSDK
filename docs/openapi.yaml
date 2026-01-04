@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: Device API
   description: API for managing device properties and HA MQTT integration.
-  version: 1.0.0
+  version: 1.0.1
 
 servers:
   - url: http://<server-ip>
