@@ -1,15 +1,15 @@
 <!--
  * @Author: dav1d wei.liu@zendure.com
  * @Date: 2025-03-05 18:45:36
- * @LastEditors: dav1d wei.liu@zendure.com
- * @LastEditTime: 2025-07-30 19:18:09
+ * @LastEditors: dav1dBoy 492664938@qq.com
+ * @LastEditTime: 2026-01-04 14:40:33
  * @FilePath: /zenSDK/docs/en_properties.md
  * @Description: 
  * 
  * Copyright (c) 2025 by Zendure, All Rights Reserved. 
 -->
 
-# **SolarFlow 800**
+# **SolarFlow 800** **SolarFlow 800 PRO/AC** **SolarFlow 800 PRO/AC** **SolarFlow 2400AC** 
 
 ## **Battery Pack Data Properties**
 
@@ -75,4 +75,4 @@ According to the protocol definition, divide the value by **10** to obtain the a
 | gridReverse     | int       | 0: Disabled, 1: Allowed reverse flow, 2: Forbidden reverse flow |
 | inverseMaxPower | int       | Maximum output power limit                                      |
 | gridStandard    | int       | Grid connection standard 0: Germany 1: France 2: Austria        |
-| smartMode       | int       | 1: The setting parameter is not written to flash. After an unexpected power loss and restart, the device will use the value stored in flash.	0: The setting parameter is written to flash.       |
+| smartMode       | int       | 1: The setting parameter is not written to flash. After an unexpected power loss and restart, the device will use the value stored in flash.	0: The setting parameter is written to flash. If you frequently set device properties, set this to 1.      |
