@@ -1,8 +1,8 @@
-openapi: 3.0.0
+﻿openapi: 3.0.0
 info:
   title: Device API
   description: API for managing device properties and HA MQTT integration.
-  version: 1.0.1
+  version: 1.0.2
 
 servers:
   - url: http://<server-ip>
@@ -38,129 +38,203 @@ paths:
                     description: Product name.
                   properties:
                     type: object
-                    description: Device runtime properties.
+                    description: Device runtime properties (read-only unless noted).
                     properties:
                       heatState:
                         type: integer
-                        description: '0: Not heating, 1: Heating.'
+                        description: 'Heating state. 0: Not heating, 1: Heating.'
                       packInputPower:
                         type: integer
+                        description: 'Battery discharge power (W).'
                       outputPackPower:
                         type: integer
+                        description: 'Battery charge power (W).'
                       outputHomePower:
                         type: integer
+                        description: 'Output power to home (W).'
                       remainOutTime:
                         type: integer
+                        description: 'Remaining discharge time (min).'
                       packState:
                         type: integer
-                        description: '0: Standby, 1: Charging, 2: Discharging.'
+                        description: 'Pack state. 0: Standby, 1: Charging, 2: Discharging.'
+                      packNum:
+                        type: integer
+                        description: 'Number of battery packs.'
                       electricLevel:
                         type: integer
+                        description: 'Average state of charge across all packs (%). Range: 0-100.'
                       gridInputPower:
                         type: integer
+                        description: 'Grid input power (W).'
                       solarInputPower:
                         type: integer
+                        description: 'Total PV input power (W).'
                       solarPower1:
                         type: integer
+                        description: 'PV channel 1 power (W).'
                       solarPower2:
                         type: integer
+                        description: 'PV channel 2 power (W).'
+                      solarPower3:
+                        type: integer
+                        description: 'PV channel 3 power (W).'
+                      solarPower4:
+                        type: integer
+                        description: 'PV channel 4 power (W).'
+                      solarPower5:
+                        type: integer
+                        description: 'PV channel 5 power (W).'
+                      solarPower6:
+                        type: integer
+                        description: 'PV channel 6 power (W).'
                       pass:
                         type: integer
+                        description: 'Pass-through state. 0: Off, 1: On.'
                       reverseState:
                         type: integer
+                        description: 'Reverse flow state. 0: Off, 1: On.'
                       socStatus:
                         type: integer
+                        description: 'SOC calibration status. 0: Normal, 1: Calibrating.'
                       hyperTmp:
                         type: integer
+                        description: 'Enclosure temperature (0.1 K stored; use same conversion as maxTemp).'
                       dcStatus:
                         type: integer
+                        description: 'DC state. Range: 0-2.'
                       pvStatus:
                         type: integer
+                        description: 'PV state. 0: Off, 1: On.'
                       acStatus:
                         type: integer
+                        description: 'AC state. Range: 0-2.'
                       dataReady:
                         type: integer
+                        description: 'Data ready flag. 0: Not ready, 1: Ready.'
                       gridState:
                         type: integer
+                        description: 'Grid connection state. 0: Disconnected, 1: Connected.'
                       BatVolt:
                         type: integer
+                        description: 'Battery voltage (0.01 V per unit).'
+                      FMVolt:
+                        type: integer
+                        description: 'Voltage activation value (V).'
                       socLimit:
                         type: integer
-                      writeRsp:
-                        type: integer
-                      acMode:
-                        type: integer
-                      inputLimit:
-                        type: integer
-                      outputLimit:
-                        type: integer
-                      socSet:
-                        type: integer
-                      minSoc:
-                        type: integer
-                      gridStandard:
-                        type: integer
-                      gridReverse:
-                        type: integer
-                      inverseMaxPower:
-                        type: integer
-                      lampSwitch:
-                        type: integer
-                      IOTState:
-                        type: integer
-                      factoryModeState:
-                        type: integer
-                      OTAState:
-                        type: integer
-                      LCNState:
-                        type: integer
-                      oldMode:
-                        type: integer
-                      VoltWakeup:
-                        type: integer
-                      ts:
-                        type: integer
-                      bindstate:
-                        type: integer
-                      tsZone:
-                        type: integer
-                      chargeMaxLimit:
-                        type: integer
-                      smartMode:
-                        type: integer
+                        description: 'SOC limit state. Range: 0-2.'
                       rssi:
                         type: integer
+                        description: 'Wi-Fi signal strength (dBm).'
+                      gridOffPower:
+                        type: integer
+                        description: 'Off-grid output power (W).'
+                      lampSwitch:
+                        type: integer
+                        description: 'Lamp state. 0: Off, 1: On.'
+                      gridOffMode:
+                        type: integer
+                        description: 'Off-grid mode (read-only status; writable via /properties/write).'
+                      IOTState:
+                        type: integer
+                        description: 'IoT connection state.'
+                      fanSwitch:
+                        type: integer
+                        description: 'Fan state. 0: Off, 1: On.'
+                      fanSpeed:
+                        type: integer
+                        description: 'Fan speed level.'
+                      faultLevel:
+                        type: integer
+                        description: 'Fault severity level.'
+                      bindstate:
+                        type: integer
+                        description: 'Device bind state.'
+                      VoltWakeup:
+                        type: integer
+                        description: 'Voltage wake-up value.'
+                      OldMode:
+                        type: integer
+                        description: 'Legacy operation mode.'
+                      OTAState:
+                        type: integer
+                        description: 'OTA update state.'
+                      LCNState:
+                        type: integer
+                        description: 'LCN connection state.'
+                      factoryModeState:
+                        type: integer
+                        description: 'Factory mode state.'
+                      timestamp:
+                        type: integer
+                        description: 'System timestamp.'
+                      ts:
+                        type: integer
+                        description: 'Unix timestamp.'
+                      timeZone:
+                        type: integer
+                        description: 'Timezone setting.'
+                      tsZone:
+                        type: integer
+                        description: 'Timezone offset.'
+                      chargeMaxLimit:
+                        type: integer
+                        description: 'Maximum charge power limit (W).'
+                      phaseSwitch:
+                        type: integer
+                        description: 'Phase switch state.'
                       is_error:
                         type: integer
+                        description: 'Error flag. 0: No error, 1: Error present.'
+                      acCouplingState:
+                        type: integer
+                        description: 'AC Coupling State (bit field). Bit0: AC-coupled input present (auto-cleared by DSP). Bit1: AC input present flag. Bit2: AC-coupled overload. Bit3: Excess AC input power.'
+                      dryNodeState:
+                        type: integer
+                        description: 'Dry contact status. 1: Connected, 0: Connected (may be reversed depending on actual wiring).'
                   packData:
                     type: array
+                    description: 'Battery pack data array. One entry per connected pack.'
                     items:
                       type: object
                       properties:
                         sn:
                           type: string
+                          description: 'Battery pack serial number.'
                         packType:
                           type: integer
+                          description: 'Pack type (reserved).'
                         socLevel:
                           type: integer
+                          description: 'State of charge (%). Range: 0-100.'
                         state:
                           type: integer
+                          description: 'Pack state. 0: Standby, 1: Charging, 2: Discharging.'
                         power:
                           type: integer
+                          description: 'Battery pack power (W).'
                         maxTemp:
                           type: integer
+                          description: 'Max cell temperature stored as 0.1 K. Convert to Celsius: (maxTemp - 2731) / 10.0'
                         totalVol:
                           type: integer
+                          description: 'Total pack voltage (V).'
                         batcur:
                           type: integer
+                          description: 'Battery current. Raw 16-bit two''s complement. Convert: signed_int16(value) / 10.0 = A'
                         maxVol:
                           type: integer
+                          description: 'Max cell voltage (0.01 V per unit).'
                         minVol:
                           type: integer
+                          description: 'Min cell voltage (0.01 V per unit).'
                         softVersion:
                           type: integer
+                          description: 'Pack firmware version.'
                         heatState:
                           type: integer
+                          description: 'Pack heating state. 0: Off, 1: On.'
 
   /properties/write:
     post:
@@ -172,17 +246,72 @@ paths:
           application/json:
             schema:
               type: object
+              required: [sn, properties]
               properties:
                 sn:
                   type: string
                   description: Serial number of the device.
                 properties:
                   type: object
-                  description: The properties to write to the device.
+                  description: The properties to write to the device. Include only the fields to change.
                   properties:
                     acMode:
                       type: integer
-                      description: AC mode value for the device.
+                      description: 'AC mode. 1: Charge, 2: Discharge.'
+                      minimum: 1
+                      maximum: 2
+                    inputLimit:
+                      type: integer
+                      description: 'AC charge power limit (W).'
+                    outputLimit:
+                      type: integer
+                      description: 'Output power limit (W).'
+                    socSet:
+                      type: integer
+                      description: 'Target state of charge (%). Range: 70-100.'
+                      minimum: 70
+                      maximum: 100
+                    minSoc:
+                      type: integer
+                      description: 'Minimum state of charge (%). Range: 0-50.'
+                      minimum: 0
+                      maximum: 50
+                    gridReverse:
+                      type: integer
+                      description: 'Reverse flow control. Range: 0-2.'
+                      minimum: 0
+                      maximum: 2
+                    inverseMaxPower:
+                      type: integer
+                      description: 'Maximum inverter output power (W).'
+                    gridStandard:
+                      type: integer
+                      description: 'Grid standard. 0: Germany, 1: France, 2: Austria, 3: Switzerland, 4: Netherlands, 5: Spain, 6: Belgium, 7: Greece, 8: Denmark, 9: Italy.'
+                      minimum: 0
+                      maximum: 9
+                    smartMode:
+                      type: integer
+                      description: 'Flash write behaviour. 0: Write to flash. 1: Do not write to flash (device restores previous values after reboot). Recommended for frequent changes.'
+                      minimum: 0
+                      maximum: 1
+                    batCalTime:
+                      type: integer
+                      description: 'Battery calibration time (minutes). Unauthorized modification is not recommended.'
+                    Fanmode:
+                      type: integer
+                      description: 'Fan mode. 0: Fan off, 1: Fan on. Unauthorized modification is not recommended.'
+                      minimum: 0
+                      maximum: 1
+                    Fanspeed:
+                      type: integer
+                      description: 'Fan speed. 0: Auto, 1: 1st gear, 2: 2nd gear. Unauthorized modification is not recommended.'
+                      minimum: 0
+                      maximum: 2
+                    gridOffMode:
+                      type: integer
+                      description: 'Off-grid mode. 0: Standard Mode, 1: Economic Mode, 2: Closure.'
+                      minimum: 0
+                      maximum: 2
       responses:
         '200':
           description: Property successfully written to the device.
