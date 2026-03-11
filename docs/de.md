@@ -44,13 +44,16 @@ Haben Sie innovative Ideen zu **Zendure**-Produkten? Kontaktieren Sie uns gern!
 
 # 📌 Unterstützte Produkte
 
-| Modell           | Firmware-Version | Status |
-| ---------------- | ---------------- | ------ |
-| SolarFlow800     | Neueste          |        |
-| SolarFlow800 Pro | Neueste          |        |
-| SolarFlow2400 AC | Neueste          |        |
-| SmartMeter3CT    | Neueste          |        |
-|                  |                  |        |
+| Modell             | Firmware-Version | Status      |
+|--------------------| ---------------- |-------------|
+| SolarFlow800       | Neueste          | unterstützt |
+| SolarFlow800 Plus  | Neueste          | unterstützt |
+| SolarFlow800 Pro   | Neueste          | unterstützt |
+| SolarFlow1600 AC+  | Neueste          | unterstützt |
+| SolarFlow2400 AC   | Neueste          | unterstützt |
+| SolarFlow2400 AC+  | Neueste          | unterstützt |
+| SolarFlow2400 Pro  | Neueste          | unterstützt |
+| SmartMeter3CT      | Neueste          | unterstützt |
 
 ---
 
