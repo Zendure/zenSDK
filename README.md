@@ -159,6 +159,7 @@ Content-Type: application/json
 - [openHAB](./examples/openHAB/zendure.things)
 - [PHP](./examples/PHP/demo.php)
 - [Python](./examples/Python/demo.py)
+- [ShellyScript](./examples/ShellyScript/demo.js)
 - [CLI quick test](#command-line-quick-test)
 
 ### Command-line quick test
